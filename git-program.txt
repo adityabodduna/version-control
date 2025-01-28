@@ -1,0 +1,116 @@
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1
+$ git init
+Initialized empty Git repository in C:/Users/rajes/OneDrive/Git-Programs/git1/.git/
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$ echo "Hello, Git!" > file.txt
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$ git add file.txt
+warning: in the working copy of 'file.txt', LF will be replaced by CRLF the next time Git touches it
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$ git commit -m "Initial commit"
+[master (root-commit) 6698db3] Initial commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file.txt
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$ git branch feature-branch
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$ git checkout feature-branch
+Switched to branch 'feature-branch'
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (feature-branch)
+$ echo "This is a feature branch change." >> file.txt
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (feature-branch)
+$ git add file.txt
+warning: in the working copy of 'file.txt', LF will be replaced by CRLF the next time Git touches it
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (feature-branch)
+$ git commit -m "Updated file.txt in feature-branch"
+[feature-branch 4ea95f0] Updated file.txt in feature-branch
+ 1 file changed, 1 insertion(+)
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (feature-branch)
+$ git checkout main
+error: pathspec 'main' did not match any file(s) known to git
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (feature-branch)
+$ git checkout master
+Switched to branch 'master'
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$ echo "This is a conflicting change in the main branch." >> file.txt
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$ git add file.txt
+warning: in the working copy of 'file.txt', LF will be replaced by CRLF the next time Git touches it
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$ git commit -m "Updated file.txt in main branch"
+[master 9a484af] Updated file.txt in main branch
+ 1 file changed, 1 insertion(+)
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$ git merge feature-branch
+Auto-merging file.txt
+CONFLICT (content): Merge conflict in file.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master|MERGING)
+$ git add file.txt
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master|MERGING)
+$ git commit -m "Resolved merge conflict in file.txt"
+[master 25c0ce0] Resolved merge conflict in file.txt
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$ git log --oneline --graph --all
+*   25c0ce0 (HEAD -> master) Resolved merge conflict in file.txt
+|\
+| * 4ea95f0 (feature-branch) Updated file.txt in feature-branch
+* | 9a484af Updated file.txt in main branch
+|/
+* 6698db3 Initial commit
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$ git remote add tutorial https://github.com/adityabodduna/version-control.git
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$ git push -u master
+fatal: 'master' does not appear to be a git repository
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$ git push -u tutorial master
+Enumerating objects: 12, done.
+Counting objects: 100% (12/12), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (12/12), 1.06 KiB | 361.00 KiB/s, done.
+Total 12 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), done.
+To https://github.com/adityabodduna/version-control.git
+ * [new branch]      master -> master
+branch 'master' set up to track 'tutorial/master'.
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$ git push -u tutorial feature-branch
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+remote:
+remote: Create a pull request for 'feature-branch' on GitHub by visiting:
+remote:      https://github.com/adityabodduna/version-control/pull/new/feature-branch
+remote:
+To https://github.com/adityabodduna/version-control.git
+ * [new branch]      feature-branch -> feature-branch
+branch 'feature-branch' set up to track 'tutorial/feature-branch'.
+
+rajesh@Aditya MINGW64 ~/OneDrive/Git-Programs/git1 (master)
+$
